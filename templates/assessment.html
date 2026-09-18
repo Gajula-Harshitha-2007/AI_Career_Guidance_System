@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Career Assessment</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <span class="navbar-brand">
+            🤖 AI Career Guidance System
+        </span>
+
+        <a href="/dashboard" class="btn btn-light">
+            Dashboard
+        </a>
+    </div>
+</nav>
+
+
+<div class="container mt-5 mb-5">
+
+    <div class="card shadow p-4">
+
+        <h2 class="text-center">
+            🎯 Career Assessment
+        </h2>
+
+        <p class="text-center text-muted">
+            Answer the questions honestly. Your answers will be used
+            to recommend suitable careers.
+        </p>
+
+        <hr>
+
+
+        <form method="POST" action="/assessment">
+
+
+            <!-- Question 1 -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    1. Which area are you most interested in?
+                </label>
+
+                <select name="interest" class="form-select" required>
+
+                    <option value="">Select an option</option>
+
+                    <option value="programming">
+                        Programming
+                    </option>
+
+                    <option value="data">
+                        Data and Mathematics
+                    </option>
+
+                    <option value="design">
+                        Design and Creativity
+                    </option>
+
+                    <option value="security">
+                        Cybersecurity
+                    </option>
+
+                    <option value="business">
+                        Business and Management
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Question 2 -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    2. How much do you enjoy programming?
+                </label>
+
+                <select name="programming" class="form-select" required>
+
+                    <option value="">Select an option</option>
+
+                    <option value="1">Not interested</option>
+
+                    <option value="2">Slightly interested</option>
+
+                    <option value="3">Moderately interested</option>
+
+                    <option value="4">Very interested</option>
+
+                    <option value="5">Extremely interested</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Question 3 -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    3. How strong are your problem-solving skills?
+                </label>
+
+                <select name="problem_solving" class="form-select" required>
+
+                    <option value="">Select an option</option>
+
+                    <option value="1">Beginner</option>
+
+                    <option value="2">Basic</option>
+
+                    <option value="3">Good</option>
+
+                    <option value="4">Very Good</option>
+
+                    <option value="5">Excellent</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Question 4 -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    4. How much do you enjoy mathematics?
+                </label>
+
+                <select name="mathematics" class="form-select" required>
+
+                    <option value="">Select an option</option>
+
+                    <option value="1">Not at all</option>
+
+                    <option value="2">A little</option>
+
+                    <option value="3">Moderately</option>
+
+                    <option value="4">Very much</option>
+
+                    <option value="5">Extremely</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Question 5 -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    5. How interested are you in Artificial Intelligence?
+                </label>
+
+                <select name="ai_interest" class="form-select" required>
+
+                    <option value="">Select an option</option>
+
+                    <option value="1">Not interested</option>
+
+                    <option value="2">Slightly interested</option>
+
+                    <option value="3">Moderately interested</option>
+
+                    <option value="4">Very interested</option>
+
+                    <option value="5">Extremely interested</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Question 6 -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    6. How much do you enjoy designing and creativity?
+                </label>
+
+                <select name="design" class="form-select" required>
+
+                    <option value="">Select an option</option>
+
+                    <option value="1">Not interested</option>
+
+                    <option value="2">Slightly interested</option>
+
+                    <option value="3">Moderately interested</option>
+
+                    <option value="4">Very interested</option>
+
+                    <option value="5">Extremely interested</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Question 7 -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    7. How interested are you in cybersecurity?
+                </label>
+
+                <select name="security" class="form-select" required>
+
+                    <option value="">Select an option</option>
+
+                    <option value="1">Not interested</option>
+
+                    <option value="2">Slightly interested</option>
+
+                    <option value="3">Moderately interested</option>
+
+                    <option value="4">Very interested</option>
+
+                    <option value="5">Extremely interested</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Question 8 -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    8. How would you rate your communication skills?
+                </label>
+
+                <select name="communication" class="form-select" required>
+
+                    <option value="">Select an option</option>
+
+                    <option value="1">Needs Improvement</option>
+
+                    <option value="2">Basic</option>
+
+                    <option value="3">Good</option>
+
+                    <option value="4">Very Good</option>
+
+                    <option value="5">Excellent</option>
+
+                </select>
+
+            </div>
+
+
+            <button type="submit"
+                    class="btn btn-primary btn-lg w-100">
+
+                🤖 Get My Career Recommendation
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

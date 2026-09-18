@@ -1,0 +1,163 @@
+/* =========================
+   GENERAL
+========================= */
+
+body {
+    background: #f5f7fb;
+    font-family: Arial, sans-serif;
+    color: #212529;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+}
+
+
+/* =========================
+   ASSESSMENT FORM
+========================= */
+
+.form-label {
+    font-weight: 600;
+}
+
+.form-select,
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+}
+
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress {
+    height: 12px;
+    border-radius: 10px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    border-radius: 10px;
+}
+
+
+/* =========================
+   ALERTS
+========================= */
+
+.alert {
+    border-radius: 12px;
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+.list-group-item {
+    border-left: none;
+    border-right: none;
+}
+
+
+/* =========================
+   HOME PAGE
+========================= */
+
+.hero-section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 18px;
+    color: #6c757d;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    color: #6c757d;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .hero-section {
+        padding: 50px 15px;
+    }
+
+    .hero-section h1 {
+        font-size: 34px;
+    }
+
+    .btn-lg {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+}
