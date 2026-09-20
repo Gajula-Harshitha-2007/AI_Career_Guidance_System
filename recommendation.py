@@ -578,6 +578,28 @@ CAREER_DETAILS = {
 
 
 # ==================================================
+# SCORING CONFIGURATION
+# ==================================================
+
+# Maximum possible score for each career before the
+# interest bonus is applied.
+CAREER_MAX_SCORES = {
+
+    "Software Developer": 25,
+
+    "AI / Machine Learning Engineer": 30,
+
+    "Data Scientist": 30,
+
+    "UI/UX Designer": 30,
+
+    "Cybersecurity Analyst": 30,
+
+    "Business Analyst": 30
+}
+
+
+# ==================================================
 # RECOMMENDATION FUNCTION
 # ==================================================
 
@@ -592,8 +614,7 @@ def recommend_career(
     communication
 ):
 
-    interest = interest.lower()
-
+    interest = interest.lower().strip()
 
     # =========================
     # CAREER SCORES
@@ -727,11 +748,43 @@ def recommend_career(
     ]
 
 
+    # Calculate normalized match percentages.
+    match_percentages = get_match_percentages(scores)
+
+
     return (
         recommended_career,
         scores,
-        details
+        details,
+        match_percentages
     )
+
+
+# ==================================================
+# MATCH PERCENTAGES
+# ==================================================
+
+def get_match_percentages(scores):
+
+    match_percentages = {}
+
+    for career_name, score in scores.items():
+
+        maximum_score = CAREER_MAX_SCORES[career_name]
+
+        percentage = round(
+            (score / maximum_score) * 100
+        )
+
+        # Keep percentage within 0-100.
+        percentage = max(
+            0,
+            min(100, percentage)
+        )
+
+        match_percentages[career_name] = percentage
+
+    return match_percentages
 
 
 # ==================================================
@@ -739,6 +792,8 @@ def recommend_career(
 # ==================================================
 
 def get_top_careers(scores):
+
+    match_percentages = get_match_percentages(scores)
 
     sorted_careers = sorted(
         scores.items(),
@@ -750,13 +805,24 @@ def get_top_careers(scores):
     top_careers = []
 
 
-    for career_name, score in sorted_careers[:5]:
+    for rank, (career_name, score) in enumerate(
+        sorted_careers[:5],
+        start=1
+    ):
 
         top_careers.append({
 
-            "name": career_name,
+            "rank":
+                rank,
 
-            "score": score,
+            "name":
+                career_name,
+
+            "score":
+                score,
+
+            "percentage":
+                match_percentages[career_name],
 
             "details":
                 CAREER_DETAILS[career_name]

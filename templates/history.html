@@ -8,9 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Assessment History | AI Career Guide
-    </title>
+    <title>Assessment History | AI Career Guide</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/history.css') }}">
@@ -21,27 +19,17 @@
 <body>
 
 
-<!-- HEADER -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="history-header">
 
-    <div class="history-brand">
+    <div class="logo">
 
-        <div class="brand-icon">
-            ✦
-        </div>
+        <span class="logo-icon">✦</span>
 
-        <div>
-
-            <strong>
-                AI Career Guide
-            </strong>
-
-            <span>
-                Career Discovery System
-            </span>
-
-        </div>
+        <span>AI Career Guide</span>
 
     </div>
 
@@ -56,8 +44,7 @@
             New Assessment
         </a>
 
-        <a href="/logout"
-           class="logout">
+        <a href="/logout">
             Logout
         </a>
 
@@ -67,16 +54,16 @@
 
 
 
-<!-- MAIN -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="history-container">
 
 
-    <!-- PAGE INTRO -->
+    <section class="history-hero">
 
-    <section class="history-intro">
-
-        <span>
+        <span class="hero-label">
             YOUR JOURNEY
         </span>
 
@@ -85,183 +72,197 @@
         </h1>
 
         <p>
-            View your previous assessments and open any
-            saved result to explore its complete career
-            recommendations and learning roadmap.
+            Review your previous career assessments
+            and revisit your recommendations.
         </p>
 
     </section>
 
 
 
+    <!-- =================================================
+         HISTORY LIST
+    ================================================= -->
+
     {% if assessments %}
 
-
-    <!-- HISTORY LIST -->
-
-    <section class="history-list">
+        <section class="history-list">
 
 
-        {% for assessment in assessments %}
+            {% for assessment in assessments %}
+
+                <article class="history-card">
 
 
-        <article class="history-card">
+                    <div class="history-number">
 
+                        <span>
+                            {{ loop.index }}
+                        </span>
 
-            <!-- NUMBER -->
-
-            <div class="history-number">
-
-                <span>
-                    {{ "%02d"|format(loop.index) }}
-                </span>
-
-            </div>
+                    </div>
 
 
 
-            <!-- INFORMATION -->
-
-            <div class="history-information">
-
-                <span class="assessment-label">
-                    ASSESSMENT #{{ assessment[0] }}
-                </span>
+                    <div class="history-content">
 
 
-                <h2>
-                    {{ assessment[9] }}
-                </h2>
+                        <div class="history-top">
 
 
-                <div class="assessment-details">
+                            <div>
 
-                    <span>
-                        Interest:
-                        <strong>
-                            {{ assessment[1] }}
-                        </strong>
-                    </span>
+                                <span class="history-label">
+                                    RECOMMENDED CAREER
+                                </span>
 
+                                <h2>
+                                    {{ assessment[9] }}
+                                </h2>
 
-                    <span>
-                        Programming:
-                        <strong>
-                            {{ assessment[2] }}/5
-                        </strong>
-                    </span>
+                            </div>
 
 
-                    <span>
-                        Problem Solving:
-                        <strong>
-                            {{ assessment[3] }}/5
-                        </strong>
-                    </span>
+                            <div class="assessment-id">
+
+                                Assessment #{{ assessment[0] }}
+
+                            </div>
 
 
-                    <span>
-                        Mathematics:
-                        <strong>
-                            {{ assessment[4] }}/5
-                        </strong>
-                    </span>
-
-                </div>
-
-            </div>
+                        </div>
 
 
 
-            <!-- BUTTON -->
-
-            <div class="history-action">
-
-                <a href="/history/result/{{ assessment[0] }}"
-                   class="view-result-button">
-
-                    View Full Result
-
-                    <span>
-                        →
-                    </span>
-
-                </a>
-
-            </div>
+                        <div class="history-details">
 
 
-        </article>
+                            <div class="detail-item">
+
+                                <span>
+                                    Interest
+                                </span>
+
+                                <strong>
+                                    {{ assessment[1] }}
+                                </strong>
+
+                            </div>
 
 
-        {% endfor %}
+                            <div class="detail-item">
+
+                                <span>
+                                    Programming
+                                </span>
+
+                                <strong>
+                                    {{ assessment[2] }}/5
+                                </strong>
+
+                            </div>
 
 
-    </section>
+                            <div class="detail-item">
+
+                                <span>
+                                    Problem Solving
+                                </span>
+
+                                <strong>
+                                    {{ assessment[3] }}/5
+                                </strong>
+
+                            </div>
+
+
+                            <div class="detail-item">
+
+                                <span>
+                                    Mathematics
+                                </span>
+
+                                <strong>
+                                    {{ assessment[4] }}/5
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="history-actions">
+
+                            <a
+                                href="{{ url_for('history_result', assessment_id=assessment[0]) }}"
+                                class="view-result-btn"
+                            >
+
+                                View Result
+
+                                <span>
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+
+        </section>
 
 
     {% else %}
 
 
-    <!-- EMPTY STATE -->
+        <section class="empty-history">
 
-    <section class="empty-history">
+            <div class="empty-icon">
+                ✦
+            </div>
 
-        <div class="empty-icon">
-            ✦
-        </div>
+            <h2>
+                No Assessments Yet
+            </h2>
 
-        <h2>
-            No assessments yet
-        </h2>
+            <p>
+                Complete your first career assessment
+                to see your results here.
+            </p>
 
-        <p>
-            Complete your first career assessment to
-            start building your career history.
-        </p>
+            <a href="/assessment">
+                Take Assessment
+            </a>
 
-        <a href="/assessment">
-            Start Assessment →
-        </a>
-
-    </section>
+        </section>
 
 
     {% endif %}
 
 
 
-    <!-- BOTTOM BUTTON -->
-
-    <div class="history-bottom">
-
-        <a href="/dashboard"
-           class="back-button">
-
-            ← Back to Dashboard
-
-        </a>
-
-
-        <a href="/assessment"
-           class="new-assessment-button">
-
-            Take New Assessment →
-
-        </a>
-
-    </div>
-
-
 </main>
 
 
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
-<footer class="history-footer">
+<footer>
 
-    AI Career Guide · Discover. Learn. Build. Grow.
+    <p>
+        AI Career Guidance System
+    </p>
 
 </footer>
 

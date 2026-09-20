@@ -5,15 +5,14 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Career Recommendations | AI Career Guide
-    </title>
+    <title>Career Recommendation | AI Career Guide</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/result.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/result.css') }}"
+    >
 
 </head>
 
@@ -21,86 +20,68 @@
 <body>
 
 
-<!-- =========================
+<!-- =========================================================
      HEADER
-========================= -->
+========================================================= -->
 
-<header class="result-header">
+<header class="site-header">
 
-    <div class="brand">
+    <div class="header-container">
 
-        <div class="brand-logo">
-            ✦
-        </div>
+        <a href="{{ url_for('dashboard') }}" class="logo">
+            AI Career Guide
+        </a>
 
-        <div>
 
-            <strong>
-                AI Career Guide
-            </strong>
+        <nav class="main-nav">
 
-            <span>
-                Career Discovery System
-            </span>
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
 
-        </div>
+            <a href="{{ url_for('history') }}">
+                History
+            </a>
+
+            <a href="{{ url_for('logout') }}" class="logout-link">
+                Logout
+            </a>
+
+        </nav>
 
     </div>
-
-
-    <nav class="header-nav">
-
-        <a href="/dashboard">
-            Dashboard
-        </a>
-
-        <a href="/history">
-            History
-        </a>
-
-        <a href="/logout"
-           class="logout-link">
-            Logout
-        </a>
-
-    </nav>
 
 </header>
 
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
 
-<main class="result-container">
+<main class="result-page">
 
 
-    <!-- =========================
+    <!-- =====================================================
          HERO
-    ========================= -->
+    ====================================================== -->
 
-    <section class="hero-section">
+    <section class="result-hero">
 
         <div class="hero-content">
 
-            <span class="hero-tag">
-                ✦ ASSESSMENT COMPLETE
+            <span class="hero-label">
+                AI CAREER ASSESSMENT
             </span>
-
 
             <h1>
-                Your career possibilities
-                <span>start here.</span>
+                Your Career Recommendation
             </h1>
 
-
             <p>
-
                 Based on your interests, skills and assessment
-                responses, here are the career paths that match
-                your profile.
-
+                responses, our career guidance system has identified
+                careers that match your profile.
             </p>
 
         </div>
@@ -109,149 +90,315 @@
 
 
 
-    <!-- =========================
-         BEST MATCH
-    ========================= -->
+    <!-- =====================================================
+         PRIMARY CAREER
+    ====================================================== -->
 
-    <section class="primary-career">
+    <section class="primary-career-section">
 
-        <div class="primary-left">
-
-            <span class="primary-tag">
-                YOUR STRONGEST MATCH
-            </span>
+        <div class="primary-career-card">
 
 
-            <h2>
-                {{ career }}
-            </h2>
+            <div class="primary-career-content">
 
-
-            <p>
-                {{ details.description }}
-            </p>
-
-
-            <button type="button"
-                    class="view-roadmap-button"
-                    data-career-index="0">
-
-                View Full Roadmap
-
-                <span>
-                    ↓
+                <span class="recommendation-label">
+                    RECOMMENDED CAREER
                 </span>
 
-            </button>
 
-        </div>
-
-
-        <div class="primary-score">
-
-            <span>
-                MATCH SCORE
-            </span>
+                <h2>
+                    {{ career }}
+                </h2>
 
 
-            <strong>
-                {{ scores[career] }}
-            </strong>
+                <p class="primary-description">
+                    {{ details.description }}
+                </p>
 
 
-            <small>
-                Based on your assessment
-            </small>
+                <!-- MATCH -->
 
-        </div>
+                <div class="primary-match">
 
-    </section>
+                    <div class="match-heading">
 
+                        <span>
+                            Career Match
+                        </span>
 
+                        <strong>
+                            {{ match_percentages[career] }}%
+                        </strong>
 
-    <!-- =========================
-         TOP 5 CAREERS
-    ========================= -->
-
-    <section class="career-section">
-
-
-        <div class="section-heading">
-
-            <span>
-                EXPLORE YOUR OPTIONS
-            </span>
+                    </div>
 
 
-            <h2>
-                Top 5 Career Opportunities
-            </h2>
+                    <div
+                        class="match-bar"
+                        data-percentage="{{ match_percentages[career] }}"
+                    >
+
+                        <div class="match-fill"></div>
+
+                    </div>
+
+                </div>
 
 
-            <p>
-                Click a career to explore its complete learning journey.
-            </p>
+                <button
+                    type="button"
+                    class="roadmap-main-btn"
+                    data-roadmap-target="0"
+                >
+                    View Full Career Roadmap
+                    <span>→</span>
+                </button>
 
-        </div>
-
-
-
-        <div class="career-grid">
-
-
-            {% for item in top_careers %}
-
-            <button type="button"
-                    class="career-option {% if loop.index == 1 %}selected{% endif %}"
-                    data-career-index="{{ loop.index0 }}">
+            </div>
 
 
-                <div class="career-option-top">
 
-                    <span class="career-number">
-                        0{{ loop.index }}
-                    </span>
+            <!-- SCORE -->
 
+            <div class="primary-score-card">
 
-                    <span class="career-score">
-                        {{ item.score }}
+                <div class="score-circle">
+
+                    <strong>
+                        {{ match_percentages[career] }}%
+                    </strong>
+
+                    <span>
+                        Match
                     </span>
 
                 </div>
 
 
-                <div class="career-option-body">
+                <div class="score-info">
 
-                    <span class="career-mini-label">
-                        CAREER PATH
+                    <span class="score-label">
+                        Assessment Score
                     </span>
 
+                    <strong>
+                        {{ scores[career] }}
+                    </strong>
+
+                    <small>
+                        Compatibility score
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WHY THIS CAREER
+    ====================================================== -->
+
+    <section class="why-career-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                YOUR PROFILE
+            </span>
+
+            <h2>
+                Why this career matches you
+            </h2>
+
+            <p>
+                Your assessment responses were compared with the
+                characteristics required for different career paths.
+            </p>
+
+        </div>
+
+
+        <div class="why-career-grid">
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h3>
+                        Strong Career Alignment
+                    </h3>
+
+                    <p>
+                        Your overall assessment profile shows a
+                        <strong>
+                            {{ match_percentages[career] }}%
+                        </strong>
+                        match with
+                        <strong>
+                            {{ career }}
+                        </strong>.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    ★
+                </div>
+
+                <div>
+
+                    <h3>
+                        Relevant Skills
+                    </h3>
+
+                    <p>
+                        This career requires a combination of
+                        technical knowledge, problem solving and
+                        practical skills that can be developed through
+                        the recommended roadmap.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="why-card">
+
+                <div class="why-icon">
+                    →
+                </div>
+
+                <div>
+
+                    <h3>
+                        Clear Learning Path
+                    </h3>
+
+                    <p>
+                        The roadmap below provides a structured path
+                        covering fundamentals, practice, projects and
+                        career preparation.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TOP CAREERS
+    ====================================================== -->
+
+    <section class="top-careers-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                CAREER OPTIONS
+            </span>
+
+            <h2>
+                Your Top Career Matches
+            </h2>
+
+            <p>
+                Explore the careers that received the strongest
+                compatibility scores from your assessment.
+            </p>
+
+        </div>
+
+
+
+        <div class="career-comparison">
+
+
+            {% for item in top_careers %}
+
+            <button
+                type="button"
+                class="career-card {% if loop.first %}active{% endif %}"
+                data-career-index="{{ loop.index0 }}"
+                data-roadmap-target="{{ loop.index0 }}"
+            >
+
+                <div class="career-rank">
+
+                    <span>
+                        #{{ loop.index }}
+                    </span>
+
+                </div>
+
+
+                <div class="career-card-content">
 
                     <h3>
                         {{ item.name }}
                     </h3>
 
-
                     <p>
                         {{ item.details.description }}
                     </p>
 
+
+                    <div class="career-match-row">
+
+                        <span>
+                            Match
+                        </span>
+
+                        <strong>
+                            {{ item.percentage }}%
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        class="small-match-bar"
+                        data-percentage="{{ item.percentage }}"
+                    >
+
+                        <div class="small-match-fill"></div>
+
+                    </div>
+
+
+                    <div class="career-score">
+
+                        Score:
+
+                        <strong>
+                            {{ item.score }}
+                        </strong>
+
+                    </div>
+
                 </div>
-
-
-                <div class="career-option-footer">
-
-                    <span>
-                        View roadmap
-                    </span>
-
-
-                    <span class="arrow">
-                        →
-                    </span>
-
-                </div>
-
 
             </button>
 
@@ -264,18 +411,41 @@
 
 
 
-    <!-- =========================
-         ROADMAP
-    ========================= -->
+    <!-- =====================================================
+         ROADMAPS
+    ====================================================== -->
 
-    <section class="roadmap-section">
+    <section
+        class="roadmap-section"
+        id="roadmap-section"
+    >
+
+
+        <div class="section-heading roadmap-heading">
+
+            <span class="section-label">
+                LEARNING ROADMAP
+            </span>
+
+            <h2>
+                Career Roadmap
+            </h2>
+
+            <p>
+                Follow the learning path for each recommended career.
+                You can switch between careers using the cards above.
+            </p>
+
+        </div>
+
 
 
         {% for item in top_careers %}
 
-
-        <div class="roadmap-panel {% if loop.index == 1 %}active{% endif %}"
-             data-panel-index="{{ loop.index0 }}">
+        <div
+            class="roadmap-panel {% if loop.first %}active-roadmap{% endif %}"
+            data-roadmap-index="{{ loop.index0 }}"
+        >
 
 
             <!-- ROADMAP HEADER -->
@@ -283,17 +453,15 @@
             <div class="roadmap-header">
 
 
-                <div>
+                <div class="roadmap-title-area">
 
-                    <span class="roadmap-label">
-                        COMPLETE LEARNING ROADMAP
+                    <span class="roadmap-rank">
+                        Career #{{ loop.index }}
                     </span>
 
-
-                    <h2>
+                    <h3>
                         {{ item.name }}
-                    </h2>
-
+                    </h3>
 
                     <p>
                         {{ item.details.description }}
@@ -302,47 +470,33 @@
                 </div>
 
 
-                <div class="roadmap-badge">
 
-                    <strong>
-                        {{ item.score }}
-                    </strong>
+                <div class="roadmap-match">
 
                     <span>
-                        Match Score
+                        Match
                     </span>
 
-                </div>
-
-            </div>
-
-
-
-            <!-- ROADMAP INTRO -->
-
-            <div class="roadmap-intro">
-
-
-                <div class="intro-icon">
-                    ✦
-                </div>
-
-
-                <div>
-
                     <strong>
-                        Your learning journey
+                        {{ item.percentage }}%
                     </strong>
 
+                </div>
 
-                    <p>
+            </div>
 
-                        Follow these stages in order.
-                        Learn the concept, practice it and
-                        complete the suggested project before
-                        moving to the next stage.
 
-                    </p>
+
+            <!-- ROADMAP PROGRESS -->
+
+            <div class="roadmap-progress">
+
+                <div
+                    class="progress-track"
+                    data-percentage="{{ item.percentage }}"
+                >
+
+                    <div class="progress-fill"></div>
 
                 </div>
 
@@ -350,20 +504,15 @@
 
 
 
-            <!-- =========================
-                 TIMELINE
-            ========================= -->
+            <!-- ROADMAP TIMELINE -->
 
-            <div class="timeline">
+            <div class="roadmap-timeline">
 
 
                 {% for step in item.details.roadmap %}
 
+                <div class="roadmap-step">
 
-                <article class="timeline-item">
-
-
-                    <!-- NUMBER -->
 
                     <div class="timeline-marker">
 
@@ -374,32 +523,21 @@
                     </div>
 
 
-                    {% if not loop.last %}
-
-                    <div class="timeline-line"></div>
-
-                    {% endif %}
-
-
-
-                    <!-- CONTENT -->
-
                     <div class="timeline-content">
 
 
-                        <span class="step-label">
-                            STAGE {{ loop.index }}
-                        </span>
+                        <div class="step-header">
 
+                            <span class="step-number">
+                                STEP {{ loop.index }}
+                            </span>
 
-                        <!-- STEP TITLE -->
+                            <h4>
+                                {{ step["title"] }}
+                            </h4>
 
-                        <h3>
-                            {{ step["title"] }}
-                        </h3>
+                        </div>
 
-
-                        <!-- STEP DESCRIPTION -->
 
                         <p class="step-description">
                             {{ step["description"] }}
@@ -407,72 +545,40 @@
 
 
 
-                        <!-- PRACTICE + PROJECT -->
+                        <!-- PRACTICE -->
 
-                        <div class="step-boxes">
+                        <div class="step-box practice-box">
 
+                            <span class="step-box-label">
+                                PRACTICE
+                            </span>
 
-                            <!-- PRACTICE -->
+                            <p>
+                                {{ step["practice"] }}
+                            </p>
 
-                            <div class="step-box practice-box">
-
-
-                                <div class="step-box-header">
-
-                                    <span class="step-box-icon">
-                                        ✓
-                                    </span>
-
-
-                                    <strong>
-                                        PRACTICE
-                                    </strong>
-
-                                </div>
-
-
-                                <p>
-                                    {{ step["practice"] }}
-                                </p>
-
-                            </div>
+                        </div>
 
 
 
-                            <!-- PROJECT -->
+                        <!-- PROJECT -->
 
-                            <div class="step-box project-box">
+                        <div class="step-box project-box">
 
+                            <span class="step-box-label">
+                                PROJECT
+                            </span>
 
-                                <div class="step-box-header">
-
-                                    <span class="step-box-icon">
-                                        ◆
-                                    </span>
-
-
-                                    <strong>
-                                        PROJECT
-                                    </strong>
-
-                                </div>
-
-
-                                <p>
-                                    {{ step["project"] }}
-                                </p>
-
-                            </div>
-
+                            <p>
+                                {{ step["project"] }}
+                            </p>
 
                         </div>
 
 
                     </div>
 
-
-                </article>
-
+                </div>
 
                 {% endfor %}
 
@@ -481,55 +587,41 @@
 
 
 
-            <!-- =========================
-                 SKILLS
-            ========================= -->
+            <!-- SKILLS -->
 
-            <div class="roadmap-skills">
+            <div class="skills-section">
 
 
                 <div class="skills-heading">
 
-                    <div class="skills-icon">
-                        🛠
-                    </div>
+                    <span class="section-label">
+                        SKILLS TO DEVELOP
+                    </span>
 
-
-                    <div>
-
-                        <strong>
-                            Skills to build
-                        </strong>
-
-
-                        <small>
-                            Important skills for this career
-                        </small>
-
-                    </div>
+                    <h4>
+                        Important Skills for {{ item.name }}
+                    </h4>
 
                 </div>
 
 
-                <div class="skill-list">
-
+                <div class="skills-list">
 
                     {% for skill in item.details.skills %}
 
-                    <span>
+                    <span class="skill-pill">
                         {{ skill }}
                     </span>
 
                     {% endfor %}
 
-
                 </div>
+
 
             </div>
 
 
         </div>
-
 
         {% endfor %}
 
@@ -538,38 +630,49 @@
 
 
 
-    <!-- =========================
-         BOTTOM
-    ========================= -->
+    <!-- =====================================================
+         FINAL ACTION
+    ====================================================== -->
 
-    <section class="bottom-section">
+    <section class="result-actions">
 
-        <div>
+        <div class="result-actions-content">
 
-            <span>
-                KEEP LEARNING
+            <span class="section-label">
+                READY TO EXPLORE?
             </span>
 
-
             <h2>
-                Your career journey starts here.
+                Want to discover another career path?
             </h2>
 
-
             <p>
-                Learn consistently, build projects and
-                keep improving your skills.
+                Retake the assessment whenever your interests,
+                skills or career goals change.
             </p>
 
         </div>
 
 
-        <a href="/assessment"
-           class="retake-button">
+        <div class="result-actions-buttons">
 
-            Retake Assessment →
+            <a
+                href="{{ url_for('assessment') }}"
+                class="retake-btn"
+            >
+                Retake Assessment
+                <span>→</span>
+            </a>
 
-        </a>
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="dashboard-btn"
+            >
+                Back to Dashboard
+            </a>
+
+        </div>
 
     </section>
 
@@ -578,94 +681,128 @@
 
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer class="result-footer">
-
-    <p>
-        AI Career Guide · Discover. Learn. Build. Grow.
-    </p>
-
-</footer>
-
-
-
-<!-- =========================
+<!-- =========================================================
      JAVASCRIPT
-========================= -->
+========================================================= -->
 
 <script>
 
-    const careerButtons =
-        document.querySelectorAll(".career-option");
+    /*
+     * Apply match percentages to progress bars.
+     */
+
+    function applyMatchPercentages() {
+
+        const percentageBars =
+            document.querySelectorAll("[data-percentage]");
 
 
-    const roadmapPanels =
-        document.querySelectorAll(".roadmap-panel");
+        percentageBars.forEach(function(bar) {
+
+            const percentage =
+                Number(bar.dataset.percentage);
 
 
-    const roadmapSection =
-        document.querySelector(".roadmap-section");
+            const fill =
+                bar.querySelector(
+                    ".match-fill, .small-match-fill, .progress-fill"
+                );
 
 
-    const mainRoadmapButton =
-        document.querySelector(".view-roadmap-button");
+            if (fill && !Number.isNaN(percentage)) {
+
+                fill.style.width =
+                    percentage + "%";
+
+            }
+
+        });
+
+    }
 
 
+
+    /*
+     * Show the selected roadmap.
+     */
 
     function showRoadmap(index) {
 
-
-        /* Remove selected career */
-
-        careerButtons.forEach(function(button) {
-
-            button.classList.remove("selected");
-
-        });
+        const roadmapPanels =
+            document.querySelectorAll(".roadmap-panel");
 
 
-        /* Hide all roadmaps */
+        const careerCards =
+            document.querySelectorAll(".career-card");
+
+
+        /*
+         * Hide all roadmap panels.
+         */
 
         roadmapPanels.forEach(function(panel) {
 
-            panel.classList.remove("active");
+            panel.classList.remove(
+                "active-roadmap"
+            );
 
         });
 
 
-        /* Select career */
+        /*
+         * Remove active state.
+         */
 
-        if (careerButtons[index]) {
+        careerCards.forEach(function(card) {
 
-            careerButtons[index]
-                .classList.add("selected");
+            card.classList.remove(
+                "active"
+            );
 
-        }
+        });
 
 
-        /* Show roadmap */
+        /*
+         * Show selected roadmap.
+         */
 
         if (roadmapPanels[index]) {
 
-            roadmapPanels[index]
-                .classList.add("active");
+            roadmapPanels[index].classList.add(
+                "active-roadmap"
+            );
 
         }
 
 
-        /* Scroll */
+        /*
+         * Highlight selected career.
+         */
+
+        if (careerCards[index]) {
+
+            careerCards[index].classList.add(
+                "active"
+            );
+
+        }
+
+
+        /*
+         * Scroll to roadmap.
+         */
+
+        const roadmapSection =
+            document.getElementById(
+                "roadmap-section"
+            );
+
 
         if (roadmapSection) {
 
             roadmapSection.scrollIntoView({
-
                 behavior: "smooth",
-
                 block: "start"
-
             });
 
         }
@@ -674,47 +811,64 @@
 
 
 
-    /* =========================
-       CAREER BUTTONS
-    ========================= */
+    /*
+     * Setup the page.
+     */
 
-    careerButtons.forEach(function(button) {
-
-        button.addEventListener(
-            "click",
-            function() {
-
-                const index =
-                    Number(
-                        button.dataset.careerIndex
-                    );
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
 
 
-                showRoadmap(index);
+            /*
+             * Apply all percentage bars.
+             */
 
-            }
-        );
-
-    });
-
+            applyMatchPercentages();
 
 
-    /* =========================
-       MAIN BUTTON
-    ========================= */
+            /*
+             * Add click events to career cards.
+             */
 
-    if (mainRoadmapButton) {
+            const careerCards =
+                document.querySelectorAll(
+                    "[data-roadmap-target]"
+                );
 
-        mainRoadmapButton.addEventListener(
-            "click",
-            function() {
 
-                showRoadmap(0);
+            careerCards.forEach(function(card) {
 
-            }
-        );
+                card.addEventListener(
+                    "click",
+                    function() {
 
-    }
+                        const index =
+                            Number(
+                                card.dataset.roadmapTarget
+                            );
+
+
+                        if (!Number.isNaN(index)) {
+
+                            showRoadmap(index);
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+            /*
+             * Make the first roadmap active.
+             */
+
+            showRoadmap(0);
+
+        }
+    );
 
 </script>
 
