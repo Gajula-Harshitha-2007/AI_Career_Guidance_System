@@ -1,43 +1,90 @@
 from flask import Flask, render_template, request, redirect, session
-
 import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
 
-from werkzeug.security import (
-    generate_password_hash,
-    check_password_hash
-)
-
-from recommendation import (
-    recommend_career,
-    get_top_careers
-)
+from recommendation import recommend_career, get_top_careers
 
 
 app = Flask(__name__)
 
-
-# =========================
-# SECRET KEY
-# =========================
-
+# Secret key for sessions
 app.secret_key = "career_guidance_secret"
 
 
-# =========================
+# =========================================================
+# DATABASE INITIALIZATION
+# =========================================================
+
+def init_db():
+
+    conn = sqlite3.connect("career.db")
+    cursor = conn.cursor()
+
+    # Users table
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            name TEXT NOT NULL,
+
+            email TEXT UNIQUE NOT NULL,
+
+            password TEXT NOT NULL
+
+        )
+    """)
+
+    # Assessment history table
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS assessments (
+
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            user_name TEXT NOT NULL,
+
+            interest TEXT,
+
+            programming INTEGER,
+
+            problem_solving INTEGER,
+
+            mathematics INTEGER,
+
+            ai_interest INTEGER,
+
+            design INTEGER,
+
+            security INTEGER,
+
+            communication INTEGER,
+
+            recommended_career TEXT NOT NULL
+
+        )
+    """)
+
+    conn.commit()
+    conn.close()
+
+
+# Create database/tables automatically when application starts
+init_db()
+
+
+# =========================================================
 # HOME
-# =========================
+# =========================================================
 
 @app.route("/")
 def home():
 
-    return render_template(
-        "index.html"
-    )
+    return render_template("index.html")
 
 
-# =========================
+# =========================================================
 # REGISTER
-# =========================
+# =========================================================
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -45,77 +92,46 @@ def register():
     if request.method == "POST":
 
         name = request.form["name"]
-
         email = request.form["email"]
-
         password = request.form["password"]
 
+        # Hash password before storing
+        hashed_password = generate_password_hash(password)
 
-        hashed_password = generate_password_hash(
-            password
-        )
-
-
-        conn = sqlite3.connect(
-            "career.db"
-        )
-
+        conn = sqlite3.connect("career.db")
         cursor = conn.cursor()
-
 
         try:
 
             cursor.execute(
                 """
-                INSERT INTO users
-                (
-                    name,
-                    email,
-                    password
-                )
+                INSERT INTO users(name, email, password)
                 VALUES (?, ?, ?)
                 """,
-                (
-                    name,
-                    email,
-                    hashed_password
-                )
+                (name, email, hashed_password)
             )
 
-
             conn.commit()
-
 
         except sqlite3.IntegrityError:
 
             conn.close()
 
-
             return """
             <h2>Email already registered!</h2>
-
-            <a href="/register">
-                Try Again
-            </a>
+            <a href="/register">Try Again</a>
             """
-
 
         conn.close()
 
+        return redirect("/login")
 
-        return redirect(
-            "/login"
-        )
-
-
-    return render_template(
-        "register.html"
-    )
+    return render_template("register.html")
 
 
-# =========================
+# =========================================================
 # LOGIN
-# =========================
+# =========================================================
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -123,76 +139,46 @@ def login():
     if request.method == "POST":
 
         email = request.form["email"]
-
         password = request.form["password"]
 
-
-        conn = sqlite3.connect(
-            "career.db"
-        )
-
+        conn = sqlite3.connect("career.db")
         cursor = conn.cursor()
 
-
         cursor.execute(
-            """
-            SELECT *
-            FROM users
-            WHERE email=?
-            """,
+            "SELECT * FROM users WHERE email=?",
             (email,)
         )
 
-
         user = cursor.fetchone()
-
 
         conn.close()
 
-
         if user:
 
-            if check_password_hash(
-                user[3],
-                password
-            ):
+            if check_password_hash(user[3], password):
 
                 session["name"] = user[1]
 
-                return redirect(
-                    "/dashboard"
-                )
-
+                return redirect("/dashboard")
 
         return """
-        <h2>
-            Invalid Email or Password
-        </h2>
-
-        <a href="/login">
-            Try Again
-        </a>
+        <h2>Invalid Email or Password</h2>
+        <a href="/login">Try Again</a>
         """
 
-
-    return render_template(
-        "login.html"
-    )
+    return render_template("login.html")
 
 
-# =========================
+# =========================================================
 # DASHBOARD
-# =========================
+# =========================================================
 
 @app.route("/dashboard")
 def dashboard():
 
     if "name" not in session:
 
-        return redirect(
-            "/login"
-        )
-
+        return redirect("/login")
 
     return render_template(
         "dashboard.html",
@@ -200,9 +186,9 @@ def dashboard():
     )
 
 
-# =========================
+# =========================================================
 # LOGOUT
-# =========================
+# =========================================================
 
 @app.route("/logout")
 def logout():
@@ -212,126 +198,55 @@ def logout():
     return redirect("/")
 
 
-# =========================
+# =========================================================
 # CAREER ASSESSMENT
-# =========================
+# =========================================================
 
-@app.route(
-    "/assessment",
-    methods=["GET", "POST"]
-)
+@app.route("/assessment", methods=["GET", "POST"])
 def assessment():
 
     if "name" not in session:
 
-        return redirect(
-            "/login"
-        )
-
+        return redirect("/login")
 
     if request.method == "POST":
 
-        interest = request.form[
-            "interest"
-        ]
+        interest = request.form["interest"]
+
+        programming = int(request.form["programming"])
+        problem_solving = int(request.form["problem_solving"])
+        mathematics = int(request.form["mathematics"])
+        ai_interest = int(request.form["ai_interest"])
+        design = int(request.form["design"])
+        security = int(request.form["security"])
+        communication = int(request.form["communication"])
 
 
-        programming = int(
-            request.form[
-                "programming"
-            ]
-        )
-
-
-        problem_solving = int(
-            request.form[
-                "problem_solving"
-            ]
-        )
-
-
-        mathematics = int(
-            request.form[
-                "mathematics"
-            ]
-        )
-
-
-        ai_interest = int(
-            request.form[
-                "ai_interest"
-            ]
-        )
-
-
-        design = int(
-            request.form[
-                "design"
-            ]
-        )
-
-
-        security = int(
-            request.form[
-                "security"
-            ]
-        )
-
-
-        communication = int(
-            request.form[
-                "communication"
-            ]
-        )
-
-
-        # =========================
-        # RECOMMENDATION
-        # =========================
-
+        # Get career recommendation
         career, scores, details = recommend_career(
-
             interest,
-
             programming,
-
             problem_solving,
-
             mathematics,
-
             ai_interest,
-
             design,
-
             security,
-
             communication
-
         )
 
 
-        # =========================
-        # TOP 5 CAREERS
-        # =========================
-
-        top_careers = get_top_careers(
-            scores
-        )
+        # Get top career opportunities
+        top_careers = get_top_careers(scores)
 
 
-        # =========================
+        # =================================================
         # SAVE ASSESSMENT
-        # =========================
+        # =================================================
 
-        conn = sqlite3.connect(
-            "career.db"
-        )
-
+        conn = sqlite3.connect("career.db")
         cursor = conn.cursor()
 
-
-        cursor.execute(
-            """
+        cursor.execute("""
             INSERT INTO assessments
             (
                 user_name,
@@ -346,288 +261,83 @@ def assessment():
                 recommended_career
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                session["name"],
-                interest,
-                programming,
-                problem_solving,
-                mathematics,
-                ai_interest,
-                design,
-                security,
-                communication,
-                career
-            )
-        )
-
+        """, (
+            session["name"],
+            interest,
+            programming,
+            problem_solving,
+            mathematics,
+            ai_interest,
+            design,
+            security,
+            communication,
+            career
+        ))
 
         conn.commit()
-
         conn.close()
 
 
-        # =========================
+        # =================================================
         # DISPLAY RESULT
-        # =========================
+        # =================================================
 
         return render_template(
-
             "result.html",
-
             career=career,
-
             scores=scores,
-
             details=details,
-
             top_careers=top_careers
-
         )
 
-
-    return render_template(
-        "assessment.html"
-    )
+    return render_template("assessment.html")
 
 
-# =========================
+# =========================================================
 # ASSESSMENT HISTORY
-# =========================
+# =========================================================
 
 @app.route("/history")
 def history():
 
     if "name" not in session:
 
-        return redirect(
-            "/login"
-        )
+        return redirect("/login")
 
-
-    conn = sqlite3.connect(
-        "career.db"
-    )
-
+    conn = sqlite3.connect("career.db")
     cursor = conn.cursor()
 
-
-    cursor.execute(
-        """
+    cursor.execute("""
         SELECT
-
             id,
-
             interest,
-
             programming,
-
             problem_solving,
-
             mathematics,
-
             ai_interest,
-
             design,
-
             security,
-
             communication,
-
             recommended_career
-
         FROM assessments
-
         WHERE user_name=?
-
         ORDER BY id DESC
-        """,
-        (
-            session["name"],
-        )
-    )
-
+    """, (session["name"],))
 
     assessments = cursor.fetchall()
 
-
     conn.close()
 
-
     return render_template(
-
         "history.html",
-
         assessments=assessments
-
     )
 
 
-# =========================
-# VIEW SAVED RESULT
-# =========================
-
-@app.route(
-    "/history/result/<int:assessment_id>"
-)
-def history_result(
-    assessment_id
-):
-
-    if "name" not in session:
-
-        return redirect(
-            "/login"
-        )
-
-
-    conn = sqlite3.connect(
-        "career.db"
-    )
-
-    cursor = conn.cursor()
-
-
-    cursor.execute(
-        """
-        SELECT
-
-            id,
-
-            interest,
-
-            programming,
-
-            problem_solving,
-
-            mathematics,
-
-            ai_interest,
-
-            design,
-
-            security,
-
-            communication,
-
-            recommended_career
-
-        FROM assessments
-
-        WHERE id=?
-
-        AND user_name=?
-        """,
-        (
-            assessment_id,
-            session["name"]
-        )
-    )
-
-
-    assessment = cursor.fetchone()
-
-
-    conn.close()
-
-
-    # =========================
-    # ASSESSMENT NOT FOUND
-    # =========================
-
-    if not assessment:
-
-        return """
-        <h2>
-            Assessment not found.
-        </h2>
-
-        <a href="/history">
-            Back to History
-        </a>
-        """
-
-
-    # =========================
-    # GET SAVED VALUES
-    # =========================
-
-    interest = assessment[1]
-
-    programming = assessment[2]
-
-    problem_solving = assessment[3]
-
-    mathematics = assessment[4]
-
-    ai_interest = assessment[5]
-
-    design = assessment[6]
-
-    security = assessment[7]
-
-    communication = assessment[8]
-
-
-    # =========================
-    # RECREATE RECOMMENDATION
-    # =========================
-
-    career, scores, details = recommend_career(
-
-        interest,
-
-        programming,
-
-        problem_solving,
-
-        mathematics,
-
-        ai_interest,
-
-        design,
-
-        security,
-
-        communication
-
-    )
-
-
-    # =========================
-    # GET TOP 5
-    # =========================
-
-    top_careers = get_top_careers(
-        scores
-    )
-
-
-    # =========================
-    # SHOW SAVED RESULT
-    # =========================
-
-    return render_template(
-
-        "result.html",
-
-        career=career,
-
-        scores=scores,
-
-        details=details,
-
-        top_careers=top_careers
-
-    )
-
-
-# =========================
+# =========================================================
 # RUN APPLICATION
-# =========================
+# =========================================================
 
 if __name__ == "__main__":
 
-    app.run(
-        debug=True
-    )
+    app.run(debug=True)
