@@ -1,0 +1,1022 @@
+/* =========================================
+   DASHBOARD PAGE
+   SIDEBAR / PROFESSIONAL DESIGN
+========================================= */
+
+.dashboard-page {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #f4f6fa;
+    color: #182235;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.dashboard-sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 245px;
+
+    padding: 28px 20px;
+
+    background: #182235;
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 20;
+}
+
+
+/* LOGO */
+
+.dashboard-logo {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 0 10px 30px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+
+.dashboard-logo-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+    color: #182235;
+
+    border-radius: 10px;
+
+    font-size: 19px;
+}
+
+
+.dashboard-logo strong {
+    display: block;
+
+    font-size: 15px;
+}
+
+
+.dashboard-logo small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #8794aa;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.dashboard-nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: 30px;
+}
+
+
+.dashboard-nav-item {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    color: #aeb8c9;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+.dashboard-nav-item span {
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 17px;
+}
+
+
+.dashboard-nav-item:hover {
+    background: rgba(255,255,255,0.07);
+
+    color: #ffffff;
+}
+
+
+.dashboard-nav-item.active {
+    background: #ffffff;
+
+    color: #182235;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,0.12);
+}
+
+
+/* =========================================
+   SIDEBAR BOTTOM
+========================================= */
+
+.dashboard-sidebar-bottom {
+    margin-top: auto;
+}
+
+
+.sidebar-help {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px;
+
+    margin-bottom: 14px;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 10px;
+}
+
+
+.sidebar-help > span {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.10);
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+
+.sidebar-help strong {
+    display: block;
+
+    font-size: 11px;
+}
+
+
+.sidebar-help small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #8d99ae;
+
+    font-size: 9px;
+}
+
+
+.dashboard-logout {
+    display: block;
+
+    padding: 12px 14px;
+
+    color: #aeb8c9;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    border-radius: 9px;
+
+    transition: 0.2s;
+}
+
+
+.dashboard-logout:hover {
+    background: rgba(255,255,255,0.07);
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.dashboard-main {
+    margin-left: 245px;
+
+    min-height: 100vh;
+
+    padding: 0 48px 40px;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.dashboard-topbar {
+    min-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #e3e7ee;
+}
+
+
+.dashboard-page-label {
+    color: #8792a4;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.dashboard-topbar h1 {
+    margin: 5px 0 0;
+
+    color: #182235;
+
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+.dashboard-user {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.dashboard-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dce5f5;
+
+    color: #3f5f96;
+
+    border-radius: 50%;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+.dashboard-user strong {
+    display: block;
+
+    color: #29344a;
+
+    font-size: 12px;
+}
+
+
+.dashboard-user small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #919aaa;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   WELCOME CARD
+========================================= */
+
+.dashboard-welcome-card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 245px;
+
+    margin-top: 30px;
+
+    padding: 38px 45px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #253653,
+            #354d73
+        );
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+.welcome-label {
+    display: inline-block;
+
+    margin-bottom: 13px;
+
+    color: #bfcce0;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.welcome-content h2 {
+    margin: 0 0 10px;
+
+    font-size: 34px;
+
+    letter-spacing: -0.7px;
+}
+
+
+.welcome-content p {
+    max-width: 480px;
+
+    margin: 0 0 23px;
+
+    color: #cbd5e4;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.dashboard-primary-btn {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 11px 17px;
+
+    background: #ffffff;
+
+    color: #253653;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+
+.dashboard-primary-btn:hover {
+    transform: translateY(-2px);
+
+    color: #253653;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+.dashboard-primary-btn span {
+    font-size: 17px;
+}
+
+
+/* =========================================
+   WELCOME VISUAL
+========================================= */
+
+.welcome-visual {
+    position: relative;
+
+    width: 210px;
+    height: 210px;
+
+    flex-shrink: 0;
+}
+
+
+.welcome-orbit {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 135px;
+    height: 135px;
+
+    border: 1px solid rgba(255,255,255,0.20);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.welcome-orbit::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 50%;
+}
+
+
+.welcome-orbit div {
+    position: relative;
+    z-index: 2;
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.13);
+
+    border: 1px solid rgba(255,255,255,0.20);
+
+    border-radius: 50%;
+
+    font-size: 25px;
+}
+
+
+.orbit-dot {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+}
+
+
+.dot-one {
+    top: 18px;
+    right: 48px;
+}
+
+
+.dot-two {
+    bottom: 30px;
+    right: 17px;
+}
+
+
+.dot-three {
+    left: 24px;
+    bottom: 55px;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.dashboard-section {
+    margin-top: 42px;
+}
+
+
+.dashboard-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+.dashboard-section-heading span {
+    color: #8993a4;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.dashboard-section-heading h2 {
+    margin: 5px 0 0;
+
+    color: #1b263a;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+
+.dashboard-section-heading > p {
+    margin: 0;
+
+    color: #8d96a6;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   ACTION GRID
+========================================= */
+
+.dashboard-action-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 17px;
+}
+
+
+.dashboard-action-card {
+    min-height: 220px;
+
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e4e8ef;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    color: #182235;
+
+    box-shadow:
+        0 5px 20px rgba(24,34,53,0.035);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.dashboard-action-card:hover {
+    transform: translateY(-4px);
+
+    color: #182235;
+
+    box-shadow:
+        0 14px 35px rgba(24,34,53,0.09);
+}
+
+
+.action-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.action-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef2f8;
+
+    border-radius: 11px;
+
+    font-size: 20px;
+}
+
+
+.action-arrow {
+    color: #a1aaba;
+
+    font-size: 19px;
+}
+
+
+.dashboard-action-card h3 {
+    margin: 24px 0 9px;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.dashboard-action-card p {
+    margin: 0;
+
+    color: #7e8899;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+.action-link {
+    display: block;
+
+    margin-top: 17px;
+
+    color: #5875a8;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+.info-action {
+    background: #fafbfd;
+}
+
+
+/* =========================================
+   CAREER AREA GRID
+========================================= */
+
+.career-area-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+
+.career-area-card {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px;
+
+    background: #ffffff;
+
+    border: 1px solid #e4e8ef;
+
+    border-radius: 12px;
+
+    transition: 0.2s;
+}
+
+
+.career-area-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(24,34,53,0.06);
+}
+
+
+.career-area-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f0f3f8;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+
+.career-area-card strong {
+    display: block;
+
+    color: #303b50;
+
+    font-size: 11px;
+}
+
+
+.career-area-card small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #929bab;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   CAREER TIP
+========================================= */
+
+.dashboard-tip {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 14px;
+
+    margin-top: 40px;
+
+    padding: 18px 20px;
+
+    background: #eef3fb;
+
+    border: 1px solid #dce5f3;
+
+    border-radius: 13px;
+}
+
+
+.tip-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border-radius: 9px;
+
+    font-size: 18px;
+}
+
+
+.dashboard-tip strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #34435d;
+
+    font-size: 11px;
+}
+
+
+.dashboard-tip p {
+    margin: 0;
+
+    color: #718098;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.dashboard-footer {
+    margin-top: 40px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e1e5ec;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #929aaa;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .dashboard-sidebar {
+        width: 210px;
+    }
+
+
+    .dashboard-main {
+        margin-left: 210px;
+
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+
+    .dashboard-action-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .career-area-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .welcome-visual {
+        width: 160px;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .dashboard-sidebar {
+        position: relative;
+
+        width: 100%;
+
+        min-height: auto;
+
+        padding: 18px 20px;
+    }
+
+
+    .dashboard-logo {
+        padding-bottom: 18px;
+    }
+
+
+    .dashboard-nav {
+        flex-direction: row;
+
+        margin-top: 18px;
+
+        overflow-x: auto;
+    }
+
+
+    .dashboard-nav-item {
+        white-space: nowrap;
+    }
+
+
+    .dashboard-sidebar-bottom {
+        display: none;
+    }
+
+
+    .dashboard-main {
+        margin-left: 0;
+
+        padding: 0 20px 30px;
+    }
+
+
+    .dashboard-topbar {
+        min-height: 85px;
+    }
+
+
+    .dashboard-welcome-card {
+        padding: 32px;
+
+        min-height: auto;
+    }
+
+
+    .welcome-visual {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard-topbar {
+        align-items: center;
+    }
+
+
+    .dashboard-user div:last-child {
+        display: none;
+    }
+
+
+    .dashboard-topbar h1 {
+        font-size: 23px;
+    }
+
+
+    .dashboard-welcome-card {
+        padding: 27px 23px;
+    }
+
+
+    .welcome-content h2 {
+        font-size: 28px;
+    }
+
+
+    .dashboard-action-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .career-area-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .dashboard-section-heading {
+        display: block;
+    }
+
+
+    .dashboard-section-heading > p {
+        margin-top: 8px;
+    }
+
+
+    .dashboard-footer {
+        display: block;
+
+        line-height: 2;
+    }
+
+}

@@ -5,130 +5,592 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard</title>
+    <title>Dashboard | AI Career Guide</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 </head>
 
-<body>
 
-<!-- Navigation Bar -->
+<body class="dashboard-page">
 
-<nav class="navbar navbar-dark bg-primary">
 
-    <div class="container">
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-        <span class="navbar-brand fw-bold">
-            🤖 AI Career Guidance System
-        </span>
+<aside class="dashboard-sidebar">
+
+    <div class="dashboard-logo">
+
+        <div class="dashboard-logo-icon">
+            ✦
+        </div>
+
+        <div>
+
+            <strong>AI Career</strong>
+
+            <small>GUIDE</small>
+
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="dashboard-nav">
+
+        <a href="/dashboard"
+           class="dashboard-nav-item active">
+
+            <span>⌂</span>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="/assessment"
+           class="dashboard-nav-item">
+
+            <span>◎</span>
+
+            Career Assessment
+
+        </a>
+
+
+        <a href="/history"
+           class="dashboard-nav-item">
+
+            <span>◷</span>
+
+            Assessment History
+
+        </a>
+
+    </nav>
+
+
+    <!-- SIDEBAR BOTTOM -->
+
+    <div class="dashboard-sidebar-bottom">
+
+        <div class="sidebar-help">
+
+            <span>?</span>
+
+            <div>
+
+                <strong>Need guidance?</strong>
+
+                <small>Start your assessment</small>
+
+            </div>
+
+        </div>
+
 
         <a href="/logout"
-           class="btn btn-light">
-            Logout
+           class="dashboard-logout">
+
+            ↪ Logout
+
         </a>
 
     </div>
 
-</nav>
+</aside>
 
 
-<!-- Dashboard -->
 
-<div class="container mt-5">
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
-    <div class="card shadow text-center p-5">
-
-        <h1>
-            👋 Welcome, {{ name }}!
-        </h1>
-
-        <p class="text-muted mt-3">
-            Discover the career path that matches your interests and skills.
-        </p>
+<main class="dashboard-main">
 
 
-        <div class="mt-4">
+    <!-- TOP BAR -->
+
+    <header class="dashboard-topbar">
+
+        <div>
+
+            <span class="dashboard-page-label">
+
+                YOUR PERSONAL SPACE
+
+            </span>
+
+            <h1>
+
+                Dashboard
+
+            </h1>
+
+        </div>
+
+
+        <div class="dashboard-user">
+
+            <div class="dashboard-avatar">
+
+                {{ name[0]|upper }}
+
+            </div>
+
+            <div>
+
+                <strong>{{ name }}</strong>
+
+                <small>Student</small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- WELCOME BANNER -->
+
+    <section class="dashboard-welcome-card">
+
+        <div class="welcome-content">
+
+            <span class="welcome-label">
+
+                ✦ CAREER DISCOVERY
+
+            </span>
+
+
+            <h2>
+
+                Hello, {{ name }}!
+
+            </h2>
+
+
+            <p>
+
+                Your career journey starts with understanding
+                your interests, strengths and skills.
+
+            </p>
+
 
             <a href="/assessment"
-               class="btn btn-primary btn-lg me-2">
+               class="dashboard-primary-btn">
 
-                🎯 Start Career Assessment
+                Take Career Assessment
+
+                <span>→</span>
 
             </a>
+
+        </div>
+
+
+        <div class="welcome-visual">
+
+            <div class="welcome-orbit">
+
+                <div>✦</div>
+
+            </div>
+
+            <span class="orbit-dot dot-one"></span>
+            <span class="orbit-dot dot-two"></span>
+            <span class="orbit-dot dot-three"></span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- QUICK ACTIONS -->
+
+    <section class="dashboard-section">
+
+        <div class="dashboard-section-heading">
+
+            <div>
+
+                <span>QUICK ACTIONS</span>
+
+                <h2>
+
+                    Continue your journey
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-action-grid">
+
+
+            <!-- ASSESSMENT -->
+
+            <a href="/assessment"
+               class="dashboard-action-card assessment-action">
+
+                <div class="action-card-top">
+
+                    <div class="action-icon">
+
+                        🎯
+
+                    </div>
+
+                    <span class="action-arrow">
+
+                        ↗
+
+                    </span>
+
+                </div>
+
+
+                <h3>
+
+                    Career Assessment
+
+                </h3>
+
+
+                <p>
+
+                    Answer questions about your skills
+                    and interests to discover suitable
+                    career paths.
+
+                </p>
+
+
+                <span class="action-link">
+
+                    Start assessment →
+
+                </span>
+
+            </a>
+
+
+
+            <!-- HISTORY -->
 
             <a href="/history"
-               class="btn btn-outline-primary btn-lg">
+               class="dashboard-action-card history-action">
 
-                📋 Assessment History
+                <div class="action-card-top">
+
+                    <div class="action-icon">
+
+                        ◷
+
+                    </div>
+
+                    <span class="action-arrow">
+
+                        ↗
+
+                    </span>
+
+                </div>
+
+
+                <h3>
+
+                    Assessment History
+
+                </h3>
+
+
+                <p>
+
+                    Review your previous assessments
+                    and career recommendations.
+
+                </p>
+
+
+                <span class="action-link">
+
+                    View history →
+
+                </span>
 
             </a>
 
-        </div>
-
-    </div>
 
 
-    <!-- Information Cards -->
+            <!-- CAREER INFO -->
 
-    <div class="row mt-5">
+            <div class="dashboard-action-card info-action">
 
-        <div class="col-md-4 mb-4">
+                <div class="action-card-top">
 
-            <div class="card shadow h-100 text-center p-4">
+                    <div class="action-icon">
 
-                <h3>🧠 Skills</h3>
+                        📚
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+
+                    Learning Roadmap
+
+                </h3>
+
 
                 <p>
-                    Evaluate your programming, problem-solving,
-                    mathematics and communication skills.
+
+                    After your assessment, explore the
+                    skills and learning steps for your
+                    recommended career.
+
                 </p>
+
+
+                <span class="action-link">
+
+                    Available after assessment
+
+                </span>
 
             </div>
 
         </div>
 
+    </section>
 
-        <div class="col-md-4 mb-4">
 
-            <div class="card shadow h-100 text-center p-4">
 
-                <h3>🎯 Career Match</h3>
+    <!-- CAREER AREAS -->
 
-                <p>
-                    Get a career recommendation based on
-                    your assessment responses.
-                </p>
+    <section class="dashboard-section">
+
+        <div class="dashboard-section-heading">
+
+            <div>
+
+                <span>CAREER AREAS</span>
+
+                <h2>
+
+                    Explore your possibilities
+
+                </h2>
+
+            </div>
+
+            <p>
+
+                Six career paths are currently available.
+
+            </p>
+
+        </div>
+
+
+        <div class="career-area-grid">
+
+
+            <div class="career-area-card">
+
+                <span class="career-area-icon">
+
+                    💻
+
+                </span>
+
+                <div>
+
+                    <strong>Software Development</strong>
+
+                    <small>Programming & Technology</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="career-area-card">
+
+                <span class="career-area-icon">
+
+                    🤖
+
+                </span>
+
+                <div>
+
+                    <strong>AI / Machine Learning</strong>
+
+                    <small>Artificial Intelligence</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="career-area-card">
+
+                <span class="career-area-icon">
+
+                    📊
+
+                </span>
+
+                <div>
+
+                    <strong>Data Science</strong>
+
+                    <small>Data & Analytics</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="career-area-card">
+
+                <span class="career-area-icon">
+
+                    🎨
+
+                </span>
+
+                <div>
+
+                    <strong>UI / UX Design</strong>
+
+                    <small>Creative & Experience</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="career-area-card">
+
+                <span class="career-area-icon">
+
+                    🔐
+
+                </span>
+
+                <div>
+
+                    <strong>Cybersecurity</strong>
+
+                    <small>Security & Networks</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="career-area-card">
+
+                <span class="career-area-icon">
+
+                    📈
+
+                </span>
+
+                <div>
+
+                    <strong>Business Analysis</strong>
+
+                    <small>Business & Data</small>
+
+                </div>
 
             </div>
 
         </div>
 
+    </section>
 
-        <div class="col-md-4 mb-4">
 
-            <div class="card shadow h-100 text-center p-4">
 
-                <h3>📚 Roadmap</h3>
+    <!-- BOTTOM TIP -->
 
-                <p>
-                    Learn the important skills and steps
-                    needed for your recommended career.
-                </p>
+    <section class="dashboard-tip">
 
-            </div>
+        <div class="tip-icon">
+
+            💡
 
         </div>
 
-    </div>
 
-</div>
+        <div>
+
+            <strong>
+
+                Career Tip
+
+            </strong>
+
+
+            <p>
+
+                Your assessment result is based on multiple
+                skill factors, so answer each question honestly
+                for a more meaningful recommendation.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="dashboard-footer">
+
+        <span>
+
+            AI Career Guidance System
+
+        </span>
+
+        <span>
+
+            Built for students
+
+        </span>
+
+    </footer>
+
+
+</main>
+
 
 </body>
 

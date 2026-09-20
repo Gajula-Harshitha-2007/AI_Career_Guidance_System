@@ -1,290 +1,978 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Career Assessment</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <title>Career Assessment | AI Career Guide</title>
 
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+          href="{{ url_for('static', filename='css/assessment.css') }}">
+
 </head>
+
 
 <body>
 
-<nav class="navbar navbar-dark bg-primary">
-    <div class="container">
-        <span class="navbar-brand">
-            🤖 AI Career Guidance System
-        </span>
 
-        <a href="/dashboard" class="btn btn-light">
-            Dashboard
-        </a>
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="assessment-header">
+
+    <div class="brand">
+        <span class="brand-icon">✦</span>
+        <span>AI Career Guide</span>
     </div>
-</nav>
+
+    <a href="/dashboard" class="back-link">
+        ← Dashboard
+    </a>
+
+</header>
 
 
-<div class="container mt-5 mb-5">
 
-    <div class="card shadow p-4">
+<!-- =========================
+     MAIN
+========================= -->
 
-        <h2 class="text-center">
-            🎯 Career Assessment
-        </h2>
+<main class="assessment-container">
 
-        <p class="text-center text-muted">
-            Answer the questions honestly. Your answers will be used
-            to recommend suitable careers.
+
+    <!-- INTRO -->
+
+    <section class="assessment-intro">
+
+        <div class="intro-badge">
+            CAREER DISCOVERY
+        </div>
+
+        <h1>
+            Discover the career<br>
+            path that fits <span>you.</span>
+        </h1>
+
+        <p>
+            Answer the questions honestly based on what you enjoy,
+            how you think, and what interests you.
         </p>
 
-        <hr>
+        <div class="assessment-info">
+
+            <div class="info-item">
+                <span class="info-icon">⏱</span>
+                <div>
+                    <strong>2–3 minutes</strong>
+                    <small>Estimated time</small>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="info-icon">✓</span>
+                <div>
+                    <strong>10 questions</strong>
+                    <small>Quick assessment</small>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="info-icon">◆</span>
+                <div>
+                    <strong>Personalized</strong>
+                    <small>Career recommendation</small>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
 
 
-        <form method="POST" action="/assessment">
+
+    <!-- =========================
+         ASSESSMENT FORM
+    ========================= -->
+
+    <form method="POST"
+          action="/assessment"
+          class="assessment-form">
 
 
-            <!-- Question 1 -->
+        <!-- QUESTION 1 -->
 
-            <div class="mb-4">
+        <section class="question-card">
 
-                <label class="form-label fw-bold">
-                    1. Which area are you most interested in?
-                </label>
+            <div class="question-number">
+                01
+            </div>
 
-                <select name="interest" class="form-select" required>
+            <div class="question-content">
 
-                    <option value="">Select an option</option>
+                <span class="question-label">
+                    START HERE
+                </span>
 
-                    <option value="programming">
-                        Programming
-                    </option>
+                <h2>
+                    Which type of activity would you enjoy most?
+                </h2>
 
-                    <option value="data">
-                        Data and Mathematics
-                    </option>
+                <p class="question-description">
+                    Choose the area that naturally catches your attention.
+                </p>
 
-                    <option value="design">
-                        Design and Creativity
-                    </option>
 
-                    <option value="security">
-                        Cybersecurity
-                    </option>
+                <div class="option-grid interest-grid">
 
-                    <option value="business">
-                        Business and Management
-                    </option>
+                    <label class="option-card">
+                        <input type="radio"
+                               name="interest"
+                               value="programming"
+                               required>
 
-                </select>
+                        <span class="option-icon">⌘</span>
+
+                        <span class="option-text">
+                            <strong>Programming</strong>
+                            <small>Building apps and software</small>
+                        </span>
+                    </label>
+
+
+                    <label class="option-card">
+                        <input type="radio"
+                               name="interest"
+                               value="data">
+
+                        <span class="option-icon">▥</span>
+
+                        <span class="option-text">
+                            <strong>Data</strong>
+                            <small>Finding patterns in information</small>
+                        </span>
+                    </label>
+
+
+                    <label class="option-card">
+                        <input type="radio"
+                               name="interest"
+                               value="art and design">
+
+                        <span class="option-icon">✦</span>
+
+                        <span class="option-text">
+                            <strong>Art & Design</strong>
+                            <small>Creating visual experiences</small>
+                        </span>
+                    </label>
+
+
+                    <label class="option-card">
+                        <input type="radio"
+                               name="interest"
+                               value="artificial intelligence">
+
+                        <span class="option-icon">◎</span>
+
+                        <span class="option-text">
+                            <strong>Artificial Intelligence</strong>
+                            <small>Exploring intelligent technology</small>
+                        </span>
+                    </label>
+
+
+                    <label class="option-card">
+                        <input type="radio"
+                               name="interest"
+                               value="cybersecurity">
+
+                        <span class="option-icon">◈</span>
+
+                        <span class="option-text">
+                            <strong>Cybersecurity</strong>
+                            <small>Protecting systems and data</small>
+                        </span>
+                    </label>
+
+
+                    <label class="option-card">
+                        <input type="radio"
+                               name="interest"
+                               value="business">
+
+                        <span class="option-icon">↗</span>
+
+                        <span class="option-text">
+                            <strong>Business</strong>
+                            <small>Solving business problems</small>
+                        </span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 2 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                02
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    PROBLEM SOLVING
+                </span>
+
+                <h2>
+                    When you face a difficult problem, what do you enjoy doing?
+                </h2>
+
+                <p class="question-description">
+                    Think about how you naturally react when something is not working.
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="problem_solving"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>I prefer someone else to handle difficult problems.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="problem_solving"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>I try a few simple solutions first.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="problem_solving"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>I enjoy figuring things out when needed.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="problem_solving"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>I usually investigate the problem step by step.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="problem_solving"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>I really enjoy challenging problems and finding solutions.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 3 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                03
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    TECHNOLOGY
+                </span>
+
+                <h2>
+                    Which project would you be most excited to build?
+                </h2>
+
+                <p class="question-description">
+                    Choose the project that sounds most interesting to you.
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="programming"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>I would rather use an existing application.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="programming"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>A simple website with ready-made tools.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="programming"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>A small application that solves a useful problem.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="programming"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>An interactive application with custom features.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="programming"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>A complete software project built from scratch.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 4 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                04
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    NUMBERS & DATA
+                </span>
+
+                <h2>
+                    How do you feel about working with numbers and data?
+                </h2>
+
+                <p class="question-description">
+                    Think about charts, statistics, calculations and patterns.
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="mathematics"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>I strongly prefer to avoid numbers.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="mathematics"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>I can work with basic numbers when necessary.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="mathematics"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>I am comfortable working with numbers and charts.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="mathematics"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>I enjoy finding patterns and understanding data.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="mathematics"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>I really enjoy mathematics, statistics and data analysis.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 5 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                05
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    ARTIFICIAL INTELLIGENCE
+                </span>
+
+                <h2>
+                    How interested are you in Artificial Intelligence?
+                </h2>
+
+                <p class="question-description">
+                    Imagine learning how machines learn from data and make predictions.
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="ai_interest"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>It doesn't really interest me.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="ai_interest"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>I am slightly curious about it.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="ai_interest"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>I would like to understand the basics.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="ai_interest"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>I would enjoy learning how AI systems work.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="ai_interest"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>I would love to build and experiment with AI.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 6 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                06
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    CREATIVITY
+                </span>
+
+                <h2>
+                    Which activity sounds most enjoyable to you?
+                </h2>
+
+                <p class="question-description">
+                    Think about the type of creative work you would enjoy spending time on.
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="design"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>I prefer using things rather than designing them.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="design"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>I occasionally enjoy creative activities.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="design"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>I enjoy making simple visual ideas.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="design"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>I enjoy creating layouts and improving how things look.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="design"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>I love designing interfaces, visuals and user experiences.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 7 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                07
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    CYBERSECURITY
+                </span>
+
+                <h2>
+                    How interested are you in protecting computers and networks?
+                </h2>
+
+                <p class="question-description">
+                    Imagine investigating suspicious activity and protecting digital systems.
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="security"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>I am not very interested in security.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="security"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>I know it is important, but it is not my main interest.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="security"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>I would like to learn basic cybersecurity.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="security"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>I enjoy understanding how systems can be protected.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="security"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>I would love to investigate threats and secure systems.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 8 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                08
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    COMMUNICATION
+                </span>
+
+                <h2>
+                    How comfortable are you explaining your ideas to others?
+                </h2>
+
+                <p class="question-description">
+                    Think about presentations, teamwork and discussing your ideas.
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="communication"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>I prefer working quietly on my own.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="communication"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>I can explain ideas when necessary.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="communication"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>I am reasonably comfortable communicating with others.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="communication"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>I enjoy explaining ideas and working with a team.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="communication"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>I really enjoy presentations, discussions and teamwork.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 9 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                09
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    WORK STYLE
+                </span>
+
+                <h2>
+                    Which type of work would you prefer?
+                </h2>
+
+                <p class="question-description">
+                    Choose the environment that sounds closest to your personality.
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="work_style"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>Working independently with clear tasks.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="work_style"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>Working independently with occasional teamwork.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="work_style"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>A balance of individual and team work.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="work_style"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>Working closely with a team on projects.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="work_style"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>A highly collaborative and people-focused environment.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- QUESTION 10 -->
+
+        <section class="question-card">
+
+            <div class="question-number">
+                10
+            </div>
+
+            <div class="question-content">
+
+                <span class="question-label">
+                    FUTURE GOALS
+                </span>
+
+                <h2>
+                    What kind of project outcome excites you most?
+                </h2>
+
+                <p class="question-description">
+                    Imagine finishing a project. Which result would make you feel most satisfied?
+                </p>
+
+
+                <div class="answer-list">
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="future_goal"
+                               value="1"
+                               required>
+                        <span class="answer-number">1</span>
+                        <span>Making something simple and useful for myself.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="future_goal"
+                               value="2">
+                        <span class="answer-number">2</span>
+                        <span>Creating something that solves a small problem.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="future_goal"
+                               value="3">
+                        <span class="answer-number">3</span>
+                        <span>Building something that people can actually use.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="future_goal"
+                               value="4">
+                        <span class="answer-number">4</span>
+                        <span>Creating a project that demonstrates my technical skills.</span>
+                    </label>
+
+
+                    <label class="answer-option">
+                        <input type="radio"
+                               name="future_goal"
+                               value="5">
+                        <span class="answer-number">5</span>
+                        <span>Building an impressive project that could make a real impact.</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SUBMIT
+        ========================= -->
+
+        <section class="submit-section">
+
+            <div class="submit-message">
+
+                <span class="submit-icon">✦</span>
+
+                <div>
+                    <strong>Ready to discover your career path?</strong>
+
+                    <p>
+                        Your responses will be used to generate a personalized recommendation.
+                    </p>
+                </div>
 
             </div>
 
 
-            <!-- Question 2 -->
+            <button type="submit" class="submit-button">
 
-            <div class="mb-4">
+                <span>Generate My Recommendation</span>
 
-                <label class="form-label fw-bold">
-                    2. How much do you enjoy programming?
-                </label>
-
-                <select name="programming" class="form-select" required>
-
-                    <option value="">Select an option</option>
-
-                    <option value="1">Not interested</option>
-
-                    <option value="2">Slightly interested</option>
-
-                    <option value="3">Moderately interested</option>
-
-                    <option value="4">Very interested</option>
-
-                    <option value="5">Extremely interested</option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Question 3 -->
-
-            <div class="mb-4">
-
-                <label class="form-label fw-bold">
-                    3. How strong are your problem-solving skills?
-                </label>
-
-                <select name="problem_solving" class="form-select" required>
-
-                    <option value="">Select an option</option>
-
-                    <option value="1">Beginner</option>
-
-                    <option value="2">Basic</option>
-
-                    <option value="3">Good</option>
-
-                    <option value="4">Very Good</option>
-
-                    <option value="5">Excellent</option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Question 4 -->
-
-            <div class="mb-4">
-
-                <label class="form-label fw-bold">
-                    4. How much do you enjoy mathematics?
-                </label>
-
-                <select name="mathematics" class="form-select" required>
-
-                    <option value="">Select an option</option>
-
-                    <option value="1">Not at all</option>
-
-                    <option value="2">A little</option>
-
-                    <option value="3">Moderately</option>
-
-                    <option value="4">Very much</option>
-
-                    <option value="5">Extremely</option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Question 5 -->
-
-            <div class="mb-4">
-
-                <label class="form-label fw-bold">
-                    5. How interested are you in Artificial Intelligence?
-                </label>
-
-                <select name="ai_interest" class="form-select" required>
-
-                    <option value="">Select an option</option>
-
-                    <option value="1">Not interested</option>
-
-                    <option value="2">Slightly interested</option>
-
-                    <option value="3">Moderately interested</option>
-
-                    <option value="4">Very interested</option>
-
-                    <option value="5">Extremely interested</option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Question 6 -->
-
-            <div class="mb-4">
-
-                <label class="form-label fw-bold">
-                    6. How much do you enjoy designing and creativity?
-                </label>
-
-                <select name="design" class="form-select" required>
-
-                    <option value="">Select an option</option>
-
-                    <option value="1">Not interested</option>
-
-                    <option value="2">Slightly interested</option>
-
-                    <option value="3">Moderately interested</option>
-
-                    <option value="4">Very interested</option>
-
-                    <option value="5">Extremely interested</option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Question 7 -->
-
-            <div class="mb-4">
-
-                <label class="form-label fw-bold">
-                    7. How interested are you in cybersecurity?
-                </label>
-
-                <select name="security" class="form-select" required>
-
-                    <option value="">Select an option</option>
-
-                    <option value="1">Not interested</option>
-
-                    <option value="2">Slightly interested</option>
-
-                    <option value="3">Moderately interested</option>
-
-                    <option value="4">Very interested</option>
-
-                    <option value="5">Extremely interested</option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Question 8 -->
-
-            <div class="mb-4">
-
-                <label class="form-label fw-bold">
-                    8. How would you rate your communication skills?
-                </label>
-
-                <select name="communication" class="form-select" required>
-
-                    <option value="">Select an option</option>
-
-                    <option value="1">Needs Improvement</option>
-
-                    <option value="2">Basic</option>
-
-                    <option value="3">Good</option>
-
-                    <option value="4">Very Good</option>
-
-                    <option value="5">Excellent</option>
-
-                </select>
-
-            </div>
-
-
-            <button type="submit"
-                    class="btn btn-primary btn-lg w-100">
-
-                🤖 Get My Career Recommendation
+                <span class="button-arrow">→</span>
 
             </button>
 
-        </form>
+        </section>
 
-    </div>
 
-</div>
+    </form>
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="assessment-footer">
+
+    <p>
+        AI Career Guide · Career discovery made simpler
+    </p>
+
+</footer>
+
 
 </body>
+
 </html>

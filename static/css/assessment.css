@@ -1,0 +1,831 @@
+/* =========================================================
+   AI CAREER GUIDANCE SYSTEM
+   ASSESSMENT PAGE STYLES
+   File: assessment.css
+   ========================================================= */
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fc;
+    color: #171927;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.assessment-header {
+    height: 72px;
+    background: #ffffff;
+    border-bottom: 1px solid #e8eaf1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    color: #171927;
+}
+
+
+.brand-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #6d5dfc,
+        #8b5cf6
+    );
+
+    font-size: 18px;
+}
+
+
+.back-link {
+    text-decoration: none;
+
+    color: #555b70;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+
+.back-link:hover {
+    color: #6d5dfc;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.assessment-container {
+    width: min(950px, 92%);
+
+    margin: 0 auto;
+
+    padding: 70px 0 80px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.assessment-intro {
+    text-align: center;
+
+    max-width: 750px;
+
+    margin: 0 auto 55px;
+}
+
+
+.intro-badge {
+    display: inline-flex;
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    background: #eeecff;
+
+    color: #6455e8;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 20px;
+}
+
+
+.assessment-intro h1 {
+    font-size: clamp(36px, 5vw, 58px);
+
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 20px;
+}
+
+
+.assessment-intro h1 span {
+    color: #6d5dfc;
+}
+
+
+.assessment-intro > p {
+    max-width: 620px;
+
+    margin: 0 auto;
+
+    color: #70768a;
+
+    font-size: 16px;
+}
+
+
+.assessment-info {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    margin-top: 35px;
+
+    flex-wrap: wrap;
+}
+
+
+.info-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    text-align: left;
+}
+
+
+.info-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eeecff;
+
+    color: #6d5dfc;
+
+    font-weight: 700;
+}
+
+
+.info-item strong {
+    display: block;
+
+    font-size: 13px;
+
+    color: #282b3c;
+}
+
+
+.info-item small {
+    display: block;
+
+    color: #9297a7;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.assessment-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+
+/* =========================
+   QUESTION CARD
+========================= */
+
+.question-card {
+    background: #ffffff;
+
+    border: 1px solid #e5e7ef;
+
+    border-radius: 24px;
+
+    padding: 40px;
+
+    display: grid;
+
+    grid-template-columns: 60px 1fr;
+
+    gap: 25px;
+
+    box-shadow:
+        0 10px 35px rgba(30, 34, 60, 0.05);
+
+    scroll-margin-top: 100px;
+}
+
+
+.question-number {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eeecff;
+
+    color: #6657e9;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
+.question-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #7568e9;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+.question-content h2 {
+    font-size: 25px;
+
+    line-height: 1.3;
+
+    color: #1d2030;
+
+    margin-bottom: 10px;
+}
+
+
+.question-description {
+    color: #858a9b;
+
+    font-size: 14px;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================
+   INTEREST OPTIONS
+========================= */
+
+.interest-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+
+.option-card {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    border: 1px solid #e3e5ec;
+
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.option-card:hover {
+    border-color: #a9a0ff;
+
+    background: #faf9ff;
+
+    transform: translateY(-2px);
+}
+
+
+.option-card input {
+    position: absolute;
+
+    opacity: 0;
+}
+
+
+.option-card:has(input:checked) {
+    border-color: #6d5dfc;
+
+    background: #f3f1ff;
+
+    box-shadow:
+        0 0 0 2px rgba(109, 93, 252, 0.10);
+}
+
+
+.option-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #f0efff;
+
+    color: #6d5dfc;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.option-text strong {
+    display: block;
+
+    color: #25283a;
+
+    font-size: 14px;
+
+    margin-bottom: 2px;
+}
+
+
+.option-text small {
+    color: #8b90a1;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   ANSWER OPTIONS
+========================= */
+
+.answer-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.answer-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 16px 18px;
+
+    border: 1px solid #e2e4eb;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    color: #4d5263;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.answer-option:hover {
+    border-color: #aaa2ff;
+
+    background: #faf9ff;
+
+    transform: translateX(3px);
+}
+
+
+.answer-option input {
+    position: absolute;
+
+    opacity: 0;
+}
+
+
+.answer-number {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f0f1f5;
+
+    color: #777c8d;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+
+.answer-option:has(input:checked) {
+    border-color: #6d5dfc;
+
+    background: #f4f2ff;
+
+    color: #292b3b;
+}
+
+
+.answer-option:has(input:checked) .answer-number {
+    background: #6d5dfc;
+
+    color: white;
+}
+
+
+/* =========================
+   SUBMIT SECTION
+========================= */
+
+.submit-section {
+    margin-top: 10px;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #211c45,
+            #342c68
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+.submit-message {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: white;
+}
+
+
+.submit-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: #bdb5ff;
+
+    font-size: 20px;
+}
+
+
+.submit-message strong {
+    display: block;
+
+    font-size: 15px;
+
+    margin-bottom: 3px;
+}
+
+
+.submit-message p {
+    color: #bbb8d0;
+
+    font-size: 12px;
+}
+
+
+.submit-button {
+    border: none;
+
+    border-radius: 13px;
+
+    padding: 15px 20px;
+
+    background: white;
+
+    color: #352b70;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.submit-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+.button-arrow {
+    font-size: 18px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.assessment-footer {
+    text-align: center;
+
+    padding: 25px;
+
+    border-top: 1px solid #e5e7ef;
+
+    color: #9297a7;
+
+    font-size: 11px;
+
+    background: white;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 750px) {
+
+    .assessment-container {
+        width: 94%;
+
+        padding-top: 45px;
+    }
+
+
+    .assessment-intro {
+        margin-bottom: 40px;
+    }
+
+
+    .assessment-intro h1 {
+        letter-spacing: -1px;
+    }
+
+
+    .question-card {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        padding: 28px 22px;
+    }
+
+
+    .question-number {
+        width: 44px;
+        height: 44px;
+
+        border-radius: 13px;
+    }
+
+
+    .interest-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .submit-section {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .submit-button {
+        justify-content: center;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    .assessment-header {
+        padding: 0 5%;
+
+        height: 65px;
+    }
+
+
+    .brand {
+        font-size: 16px;
+    }
+
+
+    .brand-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+
+    .back-link {
+        font-size: 12px;
+    }
+
+
+    .assessment-container {
+        padding-top: 35px;
+    }
+
+
+    .assessment-intro h1 {
+        font-size: 35px;
+    }
+
+
+    .assessment-intro > p {
+        font-size: 14px;
+    }
+
+
+    .assessment-info {
+        gap: 18px;
+
+        justify-content: flex-start;
+    }
+
+
+    .info-item {
+        width: 100%;
+    }
+
+
+    .question-card {
+        border-radius: 18px;
+
+        padding: 22px 17px;
+    }
+
+
+    .question-content h2 {
+        font-size: 21px;
+    }
+
+
+    .question-description {
+        font-size: 13px;
+    }
+
+
+    .answer-option {
+        align-items: flex-start;
+
+        padding: 14px;
+
+        font-size: 13px;
+    }
+
+
+    .answer-number {
+        width: 30px;
+        height: 30px;
+
+        border-radius: 8px;
+    }
+
+
+    .submit-section {
+        padding: 22px;
+
+        border-radius: 18px;
+    }
+
+
+    .submit-message {
+        align-items: flex-start;
+    }
+
+
+    .submit-button {
+        width: 100%;
+    }
+
+}
