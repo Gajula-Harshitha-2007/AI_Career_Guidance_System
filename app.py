@@ -3,7 +3,11 @@ import sqlite3
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from recommendation import recommend_career, get_top_careers
+from recommendation import (
+    recommend_career,
+    get_top_careers,
+    get_skill_gap
+)
 
 
 app = Flask(__name__)
@@ -232,6 +236,10 @@ def assessment():
         )
 
 
+        # =========================================
+        # CAREER RECOMMENDATION
+        # =========================================
+
         (
             career,
             scores,
@@ -257,10 +265,42 @@ def assessment():
         )
 
 
+        # =========================================
+        # TOP CAREERS
+        # =========================================
+
         top_careers = get_top_careers(
             scores
         )
 
+
+        # =========================================
+        # SKILL GAP ANALYSIS
+        # =========================================
+
+        skill_gap = get_skill_gap(
+
+            career,
+
+            programming,
+
+            problem_solving,
+
+            mathematics,
+
+            ai_interest,
+
+            design,
+
+            security,
+
+            communication
+        )
+
+
+        # =========================================
+        # SAVE ASSESSMENT
+        # =========================================
 
         conn = sqlite3.connect("career.db")
         cursor = conn.cursor()
@@ -309,6 +349,10 @@ def assessment():
         conn.close()
 
 
+        # =========================================
+        # SHOW RESULT
+        # =========================================
+
         return render_template(
             "result.html",
 
@@ -320,7 +364,9 @@ def assessment():
 
             top_careers=top_careers,
 
-            match_percentages=match_percentages
+            match_percentages=match_percentages,
+
+            skill_gap=skill_gap
         )
 
 
@@ -448,6 +494,10 @@ def history_result(assessment_id):
     ) = assessment_record
 
 
+    # =========================================
+    # RECALCULATE CAREER INFORMATION
+    # =========================================
+
     (
         calculated_career,
         scores,
@@ -485,10 +535,42 @@ def history_result(assessment_id):
     details = CAREER_DETAILS[career]
 
 
+    # =========================================
+    # TOP CAREERS
+    # =========================================
+
     top_careers = get_top_careers(
         scores
     )
 
+
+    # =========================================
+    # SKILL GAP ANALYSIS
+    # =========================================
+
+    skill_gap = get_skill_gap(
+
+        career,
+
+        programming,
+
+        problem_solving,
+
+        mathematics,
+
+        ai_interest,
+
+        design,
+
+        security,
+
+        communication
+    )
+
+
+    # =========================================
+    # SHOW PREVIOUS RESULT
+    # =========================================
 
     return render_template(
 
@@ -502,7 +584,9 @@ def history_result(assessment_id):
 
         top_careers=top_careers,
 
-        match_percentages=match_percentages
+        match_percentages=match_percentages,
+
+        skill_gap=skill_gap
     )
 
 

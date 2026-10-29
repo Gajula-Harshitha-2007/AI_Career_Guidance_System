@@ -831,3 +831,124 @@ def get_top_careers(scores):
 
 
     return top_careers
+# ==================================================
+# SKILL GAP ANALYSIS
+# ==================================================
+
+def get_skill_gap(
+    career,
+    programming,
+    problem_solving,
+    mathematics,
+    ai_interest,
+    design,
+    security,
+    communication
+):
+
+    skill_scores = {
+        "Programming": programming,
+        "Problem Solving": problem_solving,
+        "Mathematics": mathematics,
+        "AI & Machine Learning": ai_interest,
+        "Design": design,
+        "Cybersecurity": security,
+        "Communication": communication
+    }
+
+
+    career_skill_map = {
+
+        "Software Developer": [
+            ("Programming", programming),
+            ("Problem Solving", problem_solving),
+            ("Mathematics", mathematics),
+            ("Communication", communication)
+        ],
+
+        "AI / Machine Learning Engineer": [
+            ("Programming", programming),
+            ("Mathematics", mathematics),
+            ("AI & Machine Learning", ai_interest),
+            ("Problem Solving", problem_solving)
+        ],
+
+        "Data Scientist": [
+            ("Mathematics", mathematics),
+            ("Problem Solving", problem_solving),
+            ("AI & Machine Learning", ai_interest),
+            ("Programming", programming)
+        ],
+
+        "UI/UX Designer": [
+            ("Design", design),
+            ("Communication", communication),
+            ("Problem Solving", problem_solving)
+        ],
+
+        "Cybersecurity Analyst": [
+            ("Cybersecurity", security),
+            ("Programming", programming),
+            ("Problem Solving", problem_solving)
+        ],
+
+        "Business Analyst": [
+            ("Communication", communication),
+            ("Mathematics", mathematics),
+            ("Problem Solving", problem_solving)
+        ]
+    }
+
+
+    selected_skills = career_skill_map.get(
+        career,
+        []
+    )
+
+
+    strengths = []
+    improvements = []
+
+
+    for skill_name, score in selected_skills:
+
+        percentage = round(
+            (score / 5) * 100
+        )
+
+
+        skill_data = {
+            "name": skill_name,
+            "score": score,
+            "percentage": percentage
+        }
+
+
+        if score >= 4:
+
+            strengths.append(
+                skill_data
+            )
+
+        else:
+
+            improvements.append(
+                skill_data
+            )
+
+
+    strengths.sort(
+        key=lambda item: item["score"],
+        reverse=True
+    )
+
+
+    improvements.sort(
+        key=lambda item: item["score"]
+    )
+
+
+    return {
+        "strengths": strengths,
+        "improvements": improvements
+    }
